@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simply Handyworks — Property Maintenance & Upgrades</title>
+<meta name="description" content="Carpentry, plumbing, electrical, and smart-home upgrades. Submit a request and George Galedo will follow up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#2477D2;
+    --blue-dark:#1B5FA8;
+    --blue-tint:#EAF3FC;
+    --orange:#F0A63B;
+    --orange-dark:#D98F22;
+    --green:#5FB53A;
+    --green-tint:#EEF9E8;
+    --ink:#1E2A32;
+    --body-text:#4C5A63;
+    --bg:#FFFFFF;
+    --bg-soft:#F6F9FB;
+    --border:#E3E9ED;
+    --footer-bg:#16283A;
+    --footer-text:#B9C7D2;
+    --font-head:'Poppins', sans-serif;
+    --font-body:'Inter', sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--body-text);
+    font-family:var(--font-body);
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  .eyebrow{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.8rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+  }
+
+  /* TOPBAR */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    padding:0.75rem 1.5rem;
+  }
+  .topbar-inner{
+    max-width:1120px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:0.75rem;
+  }
+  .brand img{
+    height:44px;
+    width:auto;
+    display:block;
+  }
+  .topbar-right{
+    display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;
+  }
+  .topbar-contact{
+    font-size:0.9rem;
+    color:var(--body-text);
+    display:flex; gap:1.25rem; flex-wrap:wrap;
+  }
+  .topbar-contact a{text-decoration:none; font-weight:500;}
+  .topbar-contact a:hover{color:var(--blue);}
+
+  .btn{
+    display:inline-block;
+    font-family:var(--font-head);
+    font-size:0.92rem;
+    font-weight:600;
+    text-decoration:none;
+    padding:0.8rem 1.6rem;
+    border-radius:8px;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary{
+    background:var(--orange);
+    color:#ffffff;
+    box-shadow:0 6px 16px rgba(240,166,59,0.35);
+  }
+  .btn-primary:hover{background:var(--orange-dark); transform:translateY(-1px);}
+  .btn-outline{
+    border-color:var(--blue);
+    color:var(--blue);
+    background:#fff;
+  }
+  .btn-outline:hover{background:var(--blue-tint);}
+  .btn-sm{padding:0.55rem 1.1rem; font-size:0.85rem;}
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg, var(--blue-tint) 0%, #ffffff 65%);
+    padding:4.5rem 1.5rem 5rem;
+  }
+  .hero-inner{
+    max-width:1120px; margin:0 auto;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+    gap:3rem;
+  }
+  @media (max-width:860px){
+    .hero-inner{grid-template-columns:1fr; text-align:center;}
+    .hero-ctas{justify-content:center;}
+    .trust-strip{justify-content:center;}
+  }
+  .hero h1{
+    font-family:var(--font-head);
+    font-weight:700;
+    font-size:clamp(2.1rem, 4vw, 2.9rem);
+    line-height:1.15;
+    color:var(--ink);
+    margin:0.6rem 0 1rem;
+  }
+  .hero h1 .accent{color:var(--blue);}
+  .hero p.lede{
+    font-size:1.1rem;
+    color:var(--body-text);
+    margin:0 0 2rem;
+    max-width:34rem;
+  }
+  .hero-ctas{display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.75rem;}
+  .trust-strip{
+    display:flex; gap:1.5rem; flex-wrap:wrap;
+    font-size:0.85rem; color:var(--body-text);
+  }
+  .trust-strip span{display:flex; align-items:center; gap:0.4rem;}
+  .trust-strip svg{width:16px; height:16px; stroke:var(--green); fill:none; stroke-width:2;}
+
+  .hero-logo-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:2rem;
+    box-shadow:0 20px 45px rgba(30,42,50,0.10);
+    text-align:center;
+  }
+  .hero-logo-card img{max-width:340px; width:100%; height:auto; margin:0 auto;}
+
+  /* SECTION SHELL */
+  section{padding:5rem 1.5rem;}
+  .section-inner{max-width:1120px; margin:0 auto;}
+  .section-head{margin-bottom:2.75rem; max-width:38rem;}
+  .section-head h2{
+    font-family:var(--font-head);
+    font-weight:700;
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    color:var(--ink);
+    margin:0.5rem 0 0.6rem;
+  }
+  .section-head p{color:var(--body-text); margin:0;}
+
+  /* SERVICES */
+  .services{background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:1.5rem;
+  }
+  .service-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:2rem 1.6rem;
+    transition:box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .service-card:hover{box-shadow:0 14px 30px rgba(30,42,50,0.08); transform:translateY(-2px);}
+  .icon-badge{
+    width:52px; height:52px;
+    border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:1.1rem;
+  }
+  .icon-badge svg{width:26px; height:26px; stroke-width:2; fill:none;}
+  .icon-badge.blue{background:var(--blue-tint);}
+  .icon-badge.blue svg{stroke:var(--blue);}
+  .icon-badge.orange{background:#FDF1DF;}
+  .icon-badge.orange svg{stroke:var(--orange-dark);}
+  .icon-badge.green{background:var(--green-tint);}
+  .icon-badge.green svg{stroke:var(--green);}
+  .service-card h3{
+    font-family:var(--font-head);
+    font-weight:600;
+    font-size:1.1rem;
+    color:var(--ink);
+    margin:0 0 0.5rem;
+  }
+  .service-card p{
+    font-size:0.92rem;
+    color:var(--body-text);
+    margin:0 0 0.9rem;
+  }
+  .service-card .tag-list{
+    display:flex; flex-wrap:wrap; gap:0.4rem;
+  }
+  .service-card .tag-list span{
+    font-size:0.72rem;
+    font-weight:600;
+    color:var(--blue-dark);
+    background:var(--blue-tint);
+    padding:0.25rem 0.6rem;
+    border-radius:999px;
+  }
+
+  /* FORM */
+  .work-order{
+    max-width:680px;
+    margin:0 auto;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow:0 20px 50px rgba(30,42,50,0.08);
+    overflow:hidden;
+  }
+  .wo-head{
+    background:var(--blue);
+    color:#fff;
+    padding:1.5rem 2rem;
+  }
+  .wo-head .wo-title{
+    font-family:var(--font-head);
+    font-weight:600;
+    font-size:1.15rem;
+  }
+  .wo-head .wo-sub{
+    font-size:0.85rem;
+    color:#D9EAFB;
+    margin-top:0.2rem;
+  }
+  form{padding:2rem;}
+  .field{margin-bottom:1.4rem;}
+  .field label{
+    display:block;
+    font-family:var(--font-head);
+    font-weight:600;
+    font-size:0.82rem;
+    color:var(--ink);
+    margin-bottom:0.4rem;
+  }
+  .field input,
+  .field select,
+  .field textarea{
+    width:100%;
+    padding:0.75rem 0.85rem;
+    border:1.5px solid var(--border);
+    border-radius:8px;
+    font-family:var(--font-body);
+    font-size:0.95rem;
+    background:#fff;
+    color:var(--ink);
+  }
+  .field textarea{resize:vertical; min-height:110px;}
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus{
+    outline:none;
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px var(--blue-tint);
+  }
+  .field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+  }
+  @media (max-width:520px){
+    .field-row{grid-template-columns:1fr;}
+  }
+  .submit-row{
+    display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+    margin-top:1.8rem;
+  }
+  .submit-note{
+    font-size:0.82rem;
+    color:#8996A0;
+  }
+  .honey{position:absolute; left:-9999px; opacity:0;}
+
+  .banner{
+    max-width:680px;
+    margin:0 auto 1.5rem;
+    background:var(--green-tint);
+    border:1px solid var(--green);
+    color:#3A7A24;
+    padding:1rem 1.25rem;
+    border-radius:10px;
+    font-size:0.9rem;
+    font-weight:500;
+    display:none;
+  }
+  .banner.show{display:block;}
+
+  /* FOOTER */
+  footer{
+    background:var(--footer-bg);
+    padding:3.5rem 1.5rem 2rem;
+  }
+  .footer-inner{
+    max-width:1120px; margin:0 auto;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:2.5rem;
+    align-items:start;
+  }
+  @media (max-width:720px){
+    .footer-inner{grid-template-columns:1fr;}
+  }
+  .footer-logo{
+    background:#fff;
+    border-radius:12px;
+    padding:1rem 1.3rem;
+    display:inline-block;
+  }
+  .footer-logo img{height:46px; width:auto; display:block;}
+  footer h4{
+    font-family:var(--font-head);
+    font-weight:600;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:#7C93A6;
+    margin:0 0 0.9rem;
+  }
+  .footer-contact-line{
+    font-size:0.92rem;
+    color:var(--footer-text);
+    margin:0.35rem 0;
+  }
+  .footer-contact-line a{text-decoration:none;}
+  .footer-contact-line a:hover{color:var(--orange);}
+  .footer-services{
+    font-size:0.92rem;
+    color:var(--footer-text);
+    line-height:1.9;
+  }
+  .footer-bottom{
+    max-width:1120px; margin:2.5rem auto 0;
+    padding-top:1.5rem;
+    border-top:1px solid rgba(255,255,255,0.08);
+    font-size:0.78rem;
+    color:#7C93A6;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .btn-primary:hover, .service-card:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><img src="main_logo.png" alt="Simply Handyworks — Property Maintenance and Upgrade"></div>
+    <div class="topbar-right">
+      <div class="topbar-contact">
+        <a href="tel:+17075613655">707-561-3655</a>
+        <a href="mailto:Simplyhandyworks@gmail.com">Simplyhandyworks@gmail.com</a>
+      </div>
+      <a href="#request" class="btn btn-primary btn-sm">Request Service</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="eyebrow">Property Maintenance &amp; Upgrades</p>
+      <h1>Reliable home repairs from a contractor your <span class="accent">neighbors trust.</span></h1>
+      <p class="lede">Carpentry, plumbing, electrical, and smart-home upgrades — handled start to finish by George Galedo. Tell us what needs work and we'll follow up to schedule it.</p>
+      <div class="hero-ctas">
+        <a href="#request" class="btn btn-primary">Request a Quote</a>
+        <a href="tel:+17075613655" class="btn btn-outline">Call 707-561-3655</a>
+      </div>
+      <div class="trust-strip">
+        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>General Contractor</span>
+        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Free estimates</span>
+        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Direct communication, no middleman</span>
+      </div>
+    </div>
+    <div class="hero-logo-card">
+      <img src="main_logo.png" alt="Simply Handyworks logo">
+    </div>
+  </div>
+</section>
+
+<section class="services" id="scope">
+  <div class="section-inner">
+    <div class="section-head">
+      <p class="eyebrow">Scope of Work</p>
+      <h2>What we cover</h2>
+      <p>Not seeing your project below? Describe it in the request form — most property upgrades fit somewhere in here.</p>
+    </div>
+
+    <div class="service-grid">
+
+      <div class="service-card">
+        <div class="icon-badge blue">
+          <svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="19" rx="0.5"/><circle cx="14" cy="12.5" r="0.8" fill="currentColor" stroke="none"/><line x1="3" y1="22" x2="21" y2="22"/></svg>
+        </div>
+        <h3>Carpentry</h3>
+        <p>Doors, cabinets, flooring, and fence repair or installation.</p>
+        <div class="tag-list"><span>Doors</span><span>Cabinets</span><span>Floors</span><span>Fences</span></div>
+      </div>
+
+      <div class="service-card">
+        <div class="icon-badge orange">
+          <svg viewBox="0 0 24 24"><path d="M7 5h5a3 3 0 0 1 3 3v2"/><path d="M15 10v3a3 3 0 0 1-3 3h-1"/><circle cx="11" cy="17" r="2"/><path d="M11 19v2"/><path d="M7 5V2"/></svg>
+        </div>
+        <h3>Plumbing</h3>
+        <p>Faucet repair and replacement, plus garbage disposal installs.</p>
+        <div class="tag-list"><span>Faucets</span><span>Garbage Disposals</span></div>
+      </div>
+
+      <div class="service-card">
+        <div class="icon-badge green">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="4.5"/><path d="M9.5 14.5h5l-1 4h-3z"/><line x1="12" y1="1.5" x2="12" y2="3.5"/><line x1="4" y1="9" x2="6" y2="9"/><line x1="18" y1="9" x2="20" y2="9"/></svg>
+        </div>
+        <h3>Electrical</h3>
+        <p>Light fixtures, motion sensors, and ceiling fan installation.</p>
+        <div class="tag-list"><span>Lighting</span><span>Sensors</span><span>Ceiling Fans</span></div>
+      </div>
+
+      <div class="service-card">
+        <div class="icon-badge blue">
+          <svg viewBox="0 0 24 24"><rect x="6" y="9" width="12" height="10" rx="1.5"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/><circle cx="12" cy="13.5" r="1.1" fill="currentColor" stroke="none"/><line x1="12" y1="14.6" x2="12" y2="16.5"/></svg>
+        </div>
+        <h3>Upgrades</h3>
+        <p>Smart locks, smart thermostats, and security cameras, plus room additions, bathroom and kitchen remodels, and ADUs.</p>
+        <div class="tag-list"><span>Smart Home</span><span>Remodels</span><span>ADUs</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="request" id="request">
+  <div class="section-inner">
+    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
+      <p class="eyebrow" style="text-align:center;">Get Started</p>
+      <h2>Request a free quote</h2>
+      <p style="margin:0 auto;">Fill this out and it goes straight to George's inbox. He'll reach out by phone or email to talk through the job and timing.</p>
+    </div>
+
+    <div class="banner" id="successBanner">✓ Request received. George will be in touch shortly — thank you.</div>
+
+    <div class="work-order">
+      <div class="wo-head">
+        <div class="wo-title">Service Request Form</div>
+        <div class="wo-sub">Usually answered within one business day</div>
+      </div>
+
+      <form action="https://formsubmit.co/Simplyhandyworks@gmail.com" method="POST" id="woForm">
+        <input type="hidden" name="_subject" value="New Work Order Request — Simply Handyworks">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_autoresponse" value="Thanks for reaching out to Simply Handyworks. Your request has been received — George will follow up with you shortly to discuss the job.">
+        <input type="hidden" name="_next" value="THANKYOU_URL">
+        <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off">
+
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="Name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="Phone" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required>
+          </div>
+          <div class="field">
+            <label for="service">Service needed</label>
+            <select id="service" name="Service Needed" required>
+              <option value="" disabled selected>Select one</option>
+              <option>Carpentry</option>
+              <option>Plumbing</option>
+              <option>Electrical</option>
+              <option>Upgrade / Smart Home / Remodel</option>
+              <option>Not sure — describe below</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="address">Property address / area</label>
+          <input type="text" id="address" name="Property Address" placeholder="Street, city" required>
+        </div>
+
+        <div class="field">
+          <label for="details">Describe the project</label>
+          <textarea id="details" name="Project Details" placeholder="What needs to be done? Include any details that would help George scope the job." required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="contact-time">Best time to reach you</label>
+          <input type="text" id="contact-time" name="Best Time To Contact" placeholder="e.g. Weekday mornings">
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Send Request</button>
+          <span class="submit-note">Sent directly to Simplyhandyworks@gmail.com</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="main_logo.png" alt="Simply Handyworks logo">
+    </div>
+    <div>
+      <h4>What We Do</h4>
+      <div class="footer-services">Carpentry &nbsp;·&nbsp; Plumbing &nbsp;·&nbsp; Electrical &nbsp;·&nbsp; Smart-Home Upgrades</div>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p class="footer-contact-line">George Galedo — General Contractor</p>
+      <p class="footer-contact-line"><a href="tel:+17075613655">Office: 707-561-3655</a></p>
+      <p class="footer-contact-line"><a href="tel:+17073428405">Mobile: 707-342-8405</a></p>
+      <p class="footer-contact-line"><a href="mailto:Simplyhandyworks@gmail.com">Simplyhandyworks@gmail.com</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="year"></span> Simply Handyworks</span>
+    <span>Property Maintenance &amp; Upgrades</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('submitted') === 'true') {
+    document.getElementById('successBanner').classList.add('show');
+    document.getElementById('successBanner').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  const form = document.getElementById('woForm');
+  const nextField = form.querySelector('input[name="_next"]');
+  const cleanUrl = window.location.origin + window.location.pathname;
+  nextField.value = cleanUrl + '?submitted=true#request';
+</script>
+
+</body>
+</html>
